@@ -1,4 +1,6 @@
 # example-above-the-fold-hapijs
+* This repo is an example hapi.js app with [Above-the-fold-only-server-render] module fully integrated
+* The step-by-step instructions on building it from scratch can be found below
 
 ## <a name="hapijs-server"></a>Hapijs Server
 * Let's use the [hapi-react-redux-starter] repo to scaffold our app.
