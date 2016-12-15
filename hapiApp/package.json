@@ -13,6 +13,7 @@
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
+    "above-the-fold-only-server-render": "^1.0.3",
     "babel-polyfill": "6.8.0",
     "bootstrap": "3.3.6",
     "jquery": "2.2.3",

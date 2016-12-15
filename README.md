@@ -1,8 +1,8 @@
 # example-above-the-fold-hapijs
 
 ## <a name="hapijs-server"></a>Hapijs Server
-- Let's use the [hapi-react-redux-starter] repo to scaffold our app.
-- Create a hapi app using the following commands:
+* Let's use the [hapi-react-redux-starter] repo to scaffold our app.
+* Create a hapi app using the following commands:
 
 ```bash
 git clone https://github.com/electrode-samples/hapi-react-redux-starter.git hapiApp
@@ -10,13 +10,13 @@ cd hapiApp
 npm install
 ```
 
-- Run using the following:
+* Run using the following:
 ```bash
 NODE_ENV=development npm test
 NODE_ENV=development npm start
 ```
 
-### <a name="above-the-fold-only-server-render"></a>above The Fold Only Server Render
+### <a name="above-the-fold-only-server-render"></a>Above The Fold Only Server Render
 
 [above-the-fold-only-server-render] is a React component for optionally skipping server side rendering of components 
 outside above-the-fold (or inside of the viewport). This component helps render your components on the server that are 
@@ -30,15 +30,53 @@ returns the child component.
 
 #### Install
 
-- Add the `above-the-fold-only-server-render` component:
+* Add the `above-the-fold-only-server-render` component:
 
 ```bash
 npm install above-the-fold-only-server-render --save
 ```
 
-You can tell the component to skip server side rendering either by passing a `prop` `skip={true}` or by setting up `skipServerRender` in your app context and passing the component a `contextKey` `prop`.
+* Add the `hapiApp/source/components/above-the-fold/above-the-fold.js` file: 
 
-Let's explore passing `skip prop`; there is an example in
+```jsx
+import React from "react";
+import { AboveTheFoldOnlyServerRender } from "above-the-fold-only-server-render";
+
+export default class AboveFold extends React.Component {
+
+  render() {
+    return (
+      <AboveTheFoldOnlyServerRender skip={true}>
+        <div className="renderMessage" style={{color: "blue"}}>
+          <h3>Above-the-fold-only-server-render: Increase Your Performance</h3>
+          <p>This will skip server rendering if the 'AboveTheFoldOnlyServerRender'
+            lines are present, or uncommented out.</p>
+          <p>This will be rendered on the server and visible if the 'AboveTheFoldOnlyServerRender'
+            lines are commented out.</p>
+          <p>Try manually toggling this component to see it in action</p>
+          <p>
+            <a href="https://github.com/electrode-io/above-the-fold-only-server-render"
+               target="_blank">Read more about this module and see our live demo
+            </a>
+          </p>
+        </div>
+      </AboveTheFoldOnlyServerRender>
+    );
+  }
+}
+```
+
+* Add the `above-the-fold` route in `hapiApp/source/routes.js`: 
+
+```jsx
+import AboveFold from "./components/above-the-fold/above-the-fold";
+
+<Route path="above-the-fold" component={AboveFold} />
+```
+
+* You can tell the component to skip server side rendering either by passing a `prop` `skip={true}` or by setting up `skipServerRender` in your app context and passing the component a `contextKey` `prop`.
+
+* Let's explore passing `skip prop`; there is an example in
 `<your-hapi-app>/components/above-fold-simple.jsx`. On the Home page, click the link to render the `localhost:3000/above-the-fold` page.
 
 The best way to demo this existing component is actually going to be in your `node_modules.`
