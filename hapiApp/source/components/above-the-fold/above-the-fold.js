@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { AboveTheFoldOnlyServerRender } from "above-the-fold-only-server-render";
 
-export default class AboveFold extends Component {
+class AboveTheFold extends Component {
   render() {
     return (
       <div>
@@ -24,3 +24,5 @@ export default class AboveFold extends Component {
     );
   }
 }
+
+export default AboveTheFold;

@@ -36,7 +36,7 @@ npm install above-the-fold-only-server-render --save
 import React, { Component } from "react";
 import { AboveTheFoldOnlyServerRender } from "above-the-fold-only-server-render";
 
-export default class AboveFold extends Component {
+class AboveTheFold extends Component {
   render() {
     return (
       <div>
@@ -59,30 +59,29 @@ export default class AboveFold extends Component {
     );
   }
 }
+
+export default AboveTheFold;
 ```
 
 * Add the `above-the-fold` route in `hapiApp/source/routes.js`: 
 
 ```jsx
-import AboveFold from "./components/above-the-fold/above-the-fold";
+import AboveTheFold from "./components/above-the-fold/above-the-fold";
 
-<Route path="above-the-fold" component={AboveFold} />
+<Route path="above-the-fold" component={AboveTheFold} />
 ```
 
 * You can tell the component to skip server side rendering either by passing a property: `skip={true}` or by setting up 
 `skipServerRender` in your app context and passing the component a `contextKey` `prop`.
 
-* Let's explore passing `skip={true}`, navigate to `localhost:3000/above-the-fold`
-
-* The easiest way to demo this existing component is actually going to be in your `node_modules.`
-
-* Navigate to `<your-hapi-app>/node_modules/above-the-fold-only-server-render/lib/components/above-the-fold-only-server-render.js` line 29:
+* The easiest way to demo this component is actually going to be in your `node_modules` folder. Navigate to 
+`hapiApp/node_modules/above-the-fold-only-server-render/lib/components/above-the-fold-only-server-render.js` line 29:
 
 ```javascript
 var SHOW_TIMEOUT = 50;
 ```
 
-* You are going to change line 29 to slow down the SHOW_TIMEOUT so you can see the component wrapper in action:
+* You are going to change line 29 to slow down the SHOW_TIMEOUT so you can see the component wrapper in action. 
 Change this to:
 
 ```javascript
@@ -95,7 +94,11 @@ var SHOW_TIMEOUT = 3000;
 NODE_ENV=development npm start
 ```
 
-* The code in the `<h3>` tag that are above the `<AboveTheFoldOnlyServerRender skip={true}> </AboveTheFoldOnlyServerRender>` will render first.
+* Navigate to `localhost:3000/above-the-fold`
+
+* The code in the `<h3>` tag that are above the 
+`<AboveTheFoldOnlyServerRender skip={true}></AboveTheFoldOnlyServerRender>` will render first. The contents of 
+`<AboveTheFoldOnlyServerRender>` should render on the client side after the `SHOW_TIMEOUT` delay.
 
 [hapi-react-redux-starter]: https://github.com/electrode-samples/hapi-react-redux-starter
 [Above-the-fold-only-server-render]: https://github.com/electrode-io/above-the-fold-only-server-render
